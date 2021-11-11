@@ -16,7 +16,9 @@ namespace Lab10
                 List<Movies> movies = ListOfMovies();
                 Console.WriteLine("Hello! Please select a genre by typing a number" +
                     " 1=animated 2=drama 3=horror 4=scifi.");
-                ListByCatagory(movies);
+                string userInput = Console.ReadLine();
+                int validNumber = IsValidNumber(userInput);
+                ListByCatagory(movies, validNumber);
                 redo = GoAgain();
             }
         }
@@ -39,13 +41,15 @@ namespace Lab10
                     else
                     {
                         Console.WriteLine("Sorry But I need a number between 1 and 4.");
-                        ListByCatagory(ListOfMovies());
+                        userInput = Console.ReadLine();
+                        //ListByCatagory(ListOfMovies());
                     }
                 }
                 else
                 {
                     Console.WriteLine("I need a number between 1 and 4.");
-                    ListByCatagory(ListOfMovies());
+                    userInput = Console.ReadLine();
+                    //ListByCatagory(ListOfMovies());
                 }
 
                 //ValidUserInput();
@@ -67,10 +71,10 @@ namespace Lab10
                 return false;
             }
         }
-        public static void ListByCatagory(List<Movies> ListOfMovies)
+        public static void ListByCatagory(List<Movies> ListOfMovies, int userInput)
         {
             //int userInput = IsValidNumber(ValidUserInput());
-            int userInput = int.Parse(ValidUserInput());
+            //int userInput = int.Parse(ValidUserInput());
             List<Movies> filteredMovies = ListOfMovies
                 .Where(movie => (int)movie.Catagory == userInput)
                 .OrderBy(x => x.Title)
